@@ -43,9 +43,3 @@ extension Resolver: ResolverRegistering {
         }
     }
 }
-
-// Interface Injection
-extension InterfaceInjectionViewModel: Resolving {
-    func getFetcher() -> Fetchable { return resolver.resolve(args: true) }
-    func getService() -> Service { return resolver.resolve() }
-}

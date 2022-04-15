@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Resolver
 
 class InterfaceInjectionViewModel {
     lazy var fetcher: Fetchable = getFetcher()
@@ -16,28 +17,8 @@ class InterfaceInjectionViewModel {
     }
 }
 
-protocol Fetchable {
-    func fetchData(_ service: Service) -> Data
-    func fetchData(_ token: String) -> Data
-}
-
-class Fetcher: Fetchable {
-    let a: Bool
-    init(a: Bool) {
-        self.a = a
-    }
-
-    func fetchData(_ service: Service) -> Data {
-        Data()
-    }
-
-    func fetchData(_ token: String) -> Data {
-        Data()
-    }
-}
-
-class Service {
-    func decompress(_ data: Data) -> Data {
-        Data()
-    }
+// Interface Injection
+extension InterfaceInjectionViewModel: Resolving {
+    func getFetcher() -> Fetchable { return resolver.resolve(args: true) }
+    func getService() -> Service { return resolver.resolve() }
 }
