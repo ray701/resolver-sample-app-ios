@@ -8,10 +8,10 @@
 import Foundation
 
 class PropertyInjectionViewModel {
-    var fetcher: XYZFetching!
-    var service: XYZService!
+    var fetcher: Fetchable!
+    var service: Service!
 
     func load() -> Data {
-        fetcher.getData(service)
+        fetcher.fetchData(service)
     }
 }

@@ -8,35 +8,35 @@
 import Foundation
 
 class InterfaceInjectionViewModel {
-    lazy var fetcher: XYZFetching = getFetcher()
-    lazy var service: XYZService = getService()
+    lazy var fetcher: Fetchable = getFetcher()
+    lazy var service: Service = getService()
 
     func load() -> Data {
-        fetcher.getData(service)
+        fetcher.fetchData(service)
     }
 }
 
-protocol XYZFetching {
-    func getData(_ service: XYZService) -> Data
-    func getData(_ token: String) -> Data
+protocol Fetchable {
+    func fetchData(_ service: Service) -> Data
+    func fetchData(_ token: String) -> Data
 }
 
-class XYZFetcher: XYZFetching {
+class Fetcher: Fetchable {
     let a: Bool
     init(a: Bool) {
         self.a = a
     }
 
-    func getData(_ service: XYZService) -> Data {
+    func fetchData(_ service: Service) -> Data {
         Data()
     }
 
-    func getData(_ token: String) -> Data {
+    func fetchData(_ token: String) -> Data {
         Data()
     }
 }
 
-class XYZService {
+class Service {
     func decompress(_ data: Data) -> Data {
         Data()
     }

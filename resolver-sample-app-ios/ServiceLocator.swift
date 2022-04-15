@@ -10,11 +10,11 @@ import Resolver
 
 class ServiceLocatorViewModel {
 
-    var fetcher: XYZFetching = Resolver.resolve(args: true)
-    var service: XYZService = Resolver.resolve()
+    var fetcher: Fetchable = Resolver.resolve(args: true)
+    var service: Service = Resolver.resolve()
 
     func load() -> Data {
-        return fetcher.getData(service)
+        return fetcher.fetchData(service)
     }
 
 }

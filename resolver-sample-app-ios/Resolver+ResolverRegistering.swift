@@ -16,10 +16,14 @@ extension Resolver: ResolverRegistering {
         register {
             InterfaceInjectionViewModel()
         }
-        register { (_, args) -> XYZFetching in
-            XYZFetcher(a: args.get()) as XYZFetching
+
+        register { (_, args) -> Fetchable in
+            Fetcher(a: args.get())
         }
-        register { XYZService() }
+
+        register {
+            Service()
+        }
 
         // Property Injection
         register { PropertyInjectionViewModel() }
@@ -42,6 +46,6 @@ extension Resolver: ResolverRegistering {
 
 // Interface Injection
 extension InterfaceInjectionViewModel: Resolving {
-    func getFetcher() -> XYZFetching { return resolver.resolve(args: true) }
-    func getService() -> XYZService { return resolver.resolve() }
+    func getFetcher() -> Fetchable { return resolver.resolve(args: true) }
+    func getService() -> Service { return resolver.resolve() }
 }

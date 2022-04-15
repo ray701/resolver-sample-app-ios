@@ -9,17 +9,17 @@ import Foundation
 
 class ConstructorInjectionViewModel {
 
-    private var fetcher: XYZFetching
-    private var service: XYZService
+    private var fetcher: Fetchable
+    private var service: Service
 
-    init(fetcher: XYZFetching, service: XYZService) {
+    init(fetcher: Fetchable, service: Service) {
         self.fetcher = fetcher
         self.service = service
     }
 
     func load() -> Data {
         let token = ""
-        let data = fetcher.getData(token)
+        let data = fetcher.fetchData(token)
         return service.decompress(data)
    }
 
